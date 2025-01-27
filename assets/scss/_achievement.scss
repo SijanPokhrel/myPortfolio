@@ -1,0 +1,9 @@
+p {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1.5s ease; /* Smooth fade-in effect */
+}
+p.visible {
+    opacity: 1; /* Fully visible */
+}
+
+

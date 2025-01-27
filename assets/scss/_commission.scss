@@ -1,0 +1,100 @@
+p {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1.5s ease; /* Smooth fade-in effect */
+}
+p.visible {
+    opacity: 1; /* Fully visible */
+}
+.commission-section {
+    padding-block: 80px;
+    .commission-content {
+        .commission-head{
+            p{
+                font-size: 52px;
+                color: var(--font-clr);
+                text-align: center;
+                font-weight: 600;
+                margin-bottom: 40px;
+                .highlight {
+                    color: var(--secondary-clr);
+                }
+            }
+        }
+        .commission-header {
+            padding-bottom: 25px;
+            p {
+                color: var(--font-clr);
+                font-size: 28px;
+                text-align: center;
+            }
+        }
+        .req-txt {
+            padding-bottom: 10px;
+            p {
+                color: var(--primary-clr);
+                text-align: center;
+                font-size: 18px;
+            }
+        }
+        .submission-btn-cnt {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 20px;
+            .submition-btn {
+                height: 44px;
+                width: 200px;
+                padding: 10px;
+                background-color: var(--bg-clr);
+                border: 2px solid var(--secondary-clr);
+                cursor: pointer;
+                p {
+                    color: var(--secondary-clr);
+                }
+            }
+            .submition-btn:hover {
+                background-color: var(--secondary-clr);
+                p {
+                    color: var(--bg-clr);
+                }
+            }
+        }
+        .commission-txt {
+            padding: 0 40px 100px 100px;
+            p {
+                color: #939090;
+                font-size: 18px;
+                text-align: center;
+            }
+        }
+        .wall-content {
+            .wall-img {
+                img {
+                    height: 100%;
+                    width: 60%;
+                    object-fit: cover;
+                }
+            }
+            .commission-txt2 {
+                padding: 40px 20px;
+                background-color: var(--bg-secondary-clr);
+                position: relative;
+                width: 60%;
+                top: -150px;
+                left: 25%;
+                .txt2-header {
+                    padding-bottom: 10px;
+                    p {
+                        font-size: 28px;
+                        color: var(--font-clr);
+                        font-weight: 500;
+                    }
+                }
+                .txt2-txt {
+                    p {
+                        color: #939090;
+                    }
+                }
+            }
+        }
+    }
+}
