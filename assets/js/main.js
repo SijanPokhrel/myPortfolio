@@ -1,39 +1,3 @@
-//Text typing animation JS
-const texts = ["Pencil Artist", "Web Developer"];
-const typingContainer = document.getElementById("typing-container");
-let textIndex = 0; // Tracks the current text in the array
-let charIndex = 0; // Tracks the current character index
-let isDeleting = false; // Indicates typing or deleting mode
-
-function typeAnimation() {
-    const currentText = texts[textIndex]; // Get the current text
-    if (isDeleting) {
-        // Reverse: Delete characters from right to left
-        charIndex--;
-        typingContainer.textContent = currentText.substring(0, charIndex);
-    } else {
-        // Forward: Add characters from left to right
-        charIndex++;
-        typingContainer.textContent = currentText.substring(0, charIndex);
-    }
-
-    // When the entire text is typed
-    if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true; // Start deleting
-        setTimeout(typeAnimation, 1000); // Pause before reversing
-    }
-    // When the text is completely deleted
-    else if (isDeleting && charIndex === 0) {
-        isDeleting = false; // Start typing the next text
-        textIndex = (textIndex + 1) % texts.length; // Move to the next text, loop back to the first text
-        setTimeout(typeAnimation, 500); // Pause before typing next text
-    } else {
-        // Control typing and deleting speeds
-        setTimeout(typeAnimation, isDeleting ? 100 : 150);
-    }
-}
-
-
 // Intersection Observer for Fade-in Scroll Animation JS
 const containers = document.querySelectorAll('p');
 const observer = new IntersectionObserver((entries, observer) => {
@@ -71,10 +35,4 @@ function resetForm() {
     }); // Scroll back to the submit form page
     forms.reset(); // Reset form fields
 }
-
-
-
-
-
-
 

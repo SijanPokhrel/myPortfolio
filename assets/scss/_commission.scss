@@ -7,25 +7,40 @@ p.visible {
 }
 .commission-section {
     padding-block: 80px;
-    .commission-content {
-        .commission-head{
-            p{
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }    .commission-content {
+        .commission-head {
+            p {
                 font-size: 52px;
                 color: var(--font-clr);
                 text-align: center;
                 font-weight: 600;
                 margin-bottom: 40px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
             }
         }
         .commission-header {
-            padding-bottom: 25px;
             p {
+                padding-bottom: 20px;
                 color: var(--font-clr);
                 font-size: 28px;
                 text-align: center;
+                @include respond-to(tablet) {
+                    font-size: 21px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 18px;
+                    padding-bottom: 10px;
+                }
             }
         }
         .req-txt {
@@ -34,6 +49,12 @@ p.visible {
                 color: var(--primary-clr);
                 text-align: center;
                 font-size: 18px;
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
         .submission-btn-cnt {
@@ -60,10 +81,22 @@ p.visible {
         }
         .commission-txt {
             padding: 0 40px 100px 100px;
+            @include respond-to(tablet) {
+                padding: 0 40px 30px 30px;
+            }
+            @include respond-to(mobile) {
+                padding: 0 0 40px 0;
+            }
             p {
                 color: #939090;
                 font-size: 18px;
                 text-align: center;
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
         .wall-content {
@@ -72,6 +105,10 @@ p.visible {
                     height: 100%;
                     width: 60%;
                     object-fit: cover;
+
+                    @include respond-to(mobile) {
+                        width: 90%;
+                    }
                 }
             }
             .commission-txt2 {
@@ -81,17 +118,41 @@ p.visible {
                 width: 60%;
                 top: -150px;
                 left: 25%;
+                @include respond-to(tablet) {
+                    top: -120px;
+                }
+                @include respond-to(mobile) {
+                    padding: 20px 10px;
+                    top: -100px;
+                }
+                @include respond-to(mini-mobile) {
+                    top: -80px;
+                    left: 15%;
+                    width: 85%;
+                }
                 .txt2-header {
                     padding-bottom: 10px;
                     p {
                         font-size: 28px;
                         color: var(--font-clr);
                         font-weight: 500;
+                        @include respond-to(tablet) {
+                            font-size: 21px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 18px;
+                        }
                     }
                 }
                 .txt2-txt {
                     p {
                         color: #939090;
+                        @include respond-to(tablet) {
+                            font-size: 15px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 14px;
+                        }
                     }
                 }
             }

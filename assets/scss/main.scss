@@ -71,57 +71,255 @@ p.visible {
             }
         }
     }
+    @include respond-to(mobile) {
+        display: none;
+    }
+}
+// .mobile-nav {
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+//     overflow: hidden;
+//     background-color: white;
+//     padding: 12px 0;
+//     z-index: 99999;
+//     display: none;
+//     @include respond-to(mobile) {
+//         display: block !important;
+//     }
+//     .nav-items {
+//         ul {
+//             display: flex;
+//             gap: 8px;
+//             justify-content: space-between;
+//             li {
+//                 width: 100%;
+
+//                 a {
+//                     display: flex;
+//                     flex-direction: column;
+//                     align-items: center;
+//                     gap: 5px;
+//                     position: relative;
+//                     cursor: pointer;
+//                     .navi {
+//                         color: #000000;
+//                         font-size: 28px;
+//                     }
+//                     p {
+//                         font-size: 9px;
+//                         color: #000000;
+//                     }
+//                 }
+//                 a::before {
+//                     display: block;
+//                     content: "";
+//                     position: absolute;
+//                     top: -12px;
+//                     left: 0px;
+//                     width: 100%;
+//                     height: 2px;
+//                     border-radius: 5px;
+//                     color: var(--secondary-clr);
+//                     background-color: var(--secondary-clr);
+//                     transform: scaleX(0);
+//                     transform-origin: left;
+//                     transition: transform 50ms ease-in-out;
+//                 }
+//                 a:hover .navi {
+//                     color: var(--secondary-clr);
+//                 }
+//                 a:hover p {
+//                     color: var(--secondary-clr);
+//                 }
+//                 a.active .navi {
+//                     color: var(--secondary-clr);
+//                 }
+//                 a.active p {
+//                     color: var(--secondary-clr);
+//                 }
+//                 a.active::before {
+//                     transform: scaleX(1);
+//                 }
+//             }
+//         }
+//     }
+// }
+
+nav {
+    background-color: var(--bg-clr);
+    padding: 1rem;
+    position: fixed; /* Make the nav bar fixed */
+    top: 0; /* Stick to the top */
+    left: 0; /* Stick to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    display: none;
+    @include respond-to(mobile) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .hamburger {
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 10px;
+        position: relative;
+        span {
+            display: block;
+            background-color: white;
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+    }
+    .logo-mob{
+        img{
+            width: 70px;
+            height: 70px;
+        }
+    }
+    /* Navigation Links */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 70px;
+        left: 100%;
+        flex-direction: column;
+        background-color: var(--bg-clr);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 1rem 0;
+        height: 100%;
+    }
+    .nav-links li {
+        padding: 20px 0;
+    }
+    .nav-links li:hover {
+        background-color: var(--secondary-clr);
+    }
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+        color: #ddd;
+    }
+    .nav-links.active {
+        left: 0;
+    }
+}
+
+/* Line sizes */
+.hamburger span:nth-child(1),
+.hamburger span:nth-child(4) {
+    width: 35px;
+    height: 4px;
+}
+
+.hamburger span:nth-child(2),
+.hamburger span:nth-child(3) {
+    width: 25px;
+    height: 3px;
+}
+
+/* Animate to X */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+    width: 35px;
+}
+
+.hamburger.active span:nth-child(4) {
+    transform: rotate(-45deg) translate(8px, -8px);
+    width: 35px;
+}
+
+.hamburger.active span:nth-child(2),
+.hamburger.active span:nth-child(3) {
+    opacity: 0;
+    transform: translateX(-20px);
 }
 
 .hero-section {
     background-color: var(--bg-clr);
     padding-block: 80px;
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }
     .hero-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 50px;
+        @include respond-to(mobile) {
+            flex-direction: column-reverse;
+        }
         .hero-lt {
             width: 60%;
             display: flex;
             flex-direction: column;
             gap: 15px;
-
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .hero-header {
                 p {
                     font-size: 56px;
                     color: var(--font-clr);
                     font-weight: 600;
+                    @include respond-to(tablet) {
+                        font-size: 42px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 28px;
+                    }
                 }
             }
             .typing-container {
                 height: 44px;
                 overflow: visible;
                 display: inline-block;
-                animation: blink-caret 0.7s steps(1) infinite;
                 letter-spacing: 1px;
                 font-size: 44px;
                 color: var(--secondary-clr);
                 font-weight: 600;
                 white-space: pre-wrap; /* Preserve spaces and allow text wrapping */
-            }
-            @keyframes blink-caret {
-                0% {
-                    border-color: var(--secondary-clr);
+                @include respond-to(tablet) {
+                    font-size: 32px;
                 }
-                100% {
-                    border-color: var(--secondary-clr);
+                @include respond-to(mobile) {
+                    font-size: 24px;
                 }
             }
+
             .hero-txt {
                 p {
                     color: #939090;
                     font-size: 18px;
+                    @include respond-to(tablet) {
+                        font-size: 16px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 15px;
+                    }
                 }
             }
         }
         .hero-rt {
             width: 40%;
+            @include respond-to(mobile) {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
             .main-img {
                 position: relative;
 
@@ -137,6 +335,11 @@ p.visible {
                         width: 340px;
                         object-fit: cover;
                         opacity: 0.9;
+                        @include respond-to(mobile) {
+                            border-bottom-right-radius: 225px;
+                            height: 295px;
+                            width: 255px;
+                        }
                     }
                     .img-pop {
                         position: absolute;
@@ -147,17 +350,30 @@ p.visible {
                         display: flex;
                         flex-direction: column;
                         align-items: end;
+                        @include respond-to(mobile) {
+                            right: -75px;
+                            left: 50%;
+                            padding: 15px 30px;
+                            align-items: center;
+                            transform: translate(-50%, 0%);
+                        }
                         .ch-name {
                             p {
                                 font-size: 24px;
                                 font-weight: 500;
                                 color: var(--font-clr);
+                                @include respond-to(tablet) {
+                                    font-size: 16px;
+                                }
                             }
                         }
                         .ch-post {
                             p {
                                 font-size: 18px;
                                 color: var(--primary-clr);
+                                @include respond-to(tablet) {
+                                    font-size: 12px;
+                                }
                             }
                         }
                     }
@@ -170,6 +386,9 @@ p.visible {
 .about-section {
     background-color: var(--bg-secondary-clr);
     padding-block: 80px;
+    @include respond-to(mobile) {
+        display: none;
+    }
     .about-content {
         .about-header {
             p {
@@ -178,6 +397,12 @@ p.visible {
                 text-align: center;
                 font-weight: 600;
                 margin-bottom: 80px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -200,6 +425,12 @@ p.visible {
                 color: var(--font-clr);
                 font-weight: 600;
                 text-align: center;
+                @include respond-to(tablet) {
+                    font-size: 28px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 21px;
+                }
             }
         }
         .about-txt {
@@ -208,6 +439,12 @@ p.visible {
                 color: #939090;
                 text-align: center;
                 font-size: 18px;
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
 
@@ -252,6 +489,21 @@ p.visible {
     }
 }
 
+.video-container {
+    display: none;
+    overflow: hidden;
+
+    @include respond-to(mobile) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
 .service-section {
     padding-top: 80px;
     .service-content {
@@ -262,6 +514,12 @@ p.visible {
                 text-align: center;
                 font-weight: 600;
                 margin-bottom: 80px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -271,6 +529,9 @@ p.visible {
             display: flex;
             gap: 20px;
             justify-content: space-between;
+            @include respond-to(mini-mobile) {
+                flex-direction: column;
+            }
             .tab-content {
                 position: relative;
                 display: flex;
@@ -282,15 +543,33 @@ p.visible {
                 border: 2px solid #323946;
                 border-radius: 12px;
                 padding: 50px 25px;
+                @include respond-to(tablet) {
+                    padding: 40px 29px;
+                }
+                @include respond-to(mobile) {
+                    padding: 20px 15px;
+                }
                 .fa-solid {
                     color: var(--secondary-clr);
                     font-size: 56px;
+                    @include respond-to(tablet) {
+                        font-size: 36px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 28px;
+                    }
                 }
                 .tab-title {
                     p {
                         color: var(--font-clr);
                         font-size: 32px;
                         font-weight: 600;
+                        @include respond-to(tablet) {
+                            font-size: 24px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 21px;
+                        }
                     }
                 }
                 .tab-txt {
@@ -305,6 +584,12 @@ p.visible {
                         text-overflow: ellipsis;
                         width: 100%;
                         overflow: hidden;
+                        @include respond-to(tablet) {
+                            font-size: 16px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 15px;
+                        }
                     }
                 }
                 .readmore-container {
@@ -350,6 +635,9 @@ p.visible {
 
 .portfolio-section {
     padding-block: 80px;
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }
     .portfolio-header {
         p {
             font-size: 52px;
@@ -357,6 +645,12 @@ p.visible {
             text-align: center;
             font-weight: 600;
             margin-bottom: 80px;
+            @include respond-to(tablet) {
+                font-size: 36px;
+            }
+            @include respond-to(mobile) {
+                font-size: 28px;
+            }
             .highlight {
                 color: var(--secondary-clr);
             }
@@ -366,6 +660,11 @@ p.visible {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
         .portfolio-item {
             position: relative;
             border-radius: 16px;
@@ -373,6 +672,12 @@ p.visible {
                 border-radius: 16px;
                 height: 280px;
                 object-fit: cover;
+                @include respond-to(tablet) {
+                    height: 220px;
+                }
+                @include respond-to(mini-mobile) {
+                    height: 160px;
+                }
             }
             .overlay {
                 position: absolute;
@@ -402,6 +707,15 @@ p.visible {
                             color: var(--font-clr);
                             font-size: 26px;
                             font-weight: 600;
+                            @include respond-to(tablet) {
+                                font-size: 18px;
+                            }
+                            @include respond-to(mobile) {
+                                font-size: 16px;
+                            }
+                            @include respond-to(mini-mobile) {
+                                font-size: 12px;
+                            }
                         }
                     }
                     .gradi-txt {
@@ -415,6 +729,13 @@ p.visible {
                             text-overflow: ellipsis;
                             width: 100%;
                             overflow: hidden;
+                            @include respond-to(tablet) {
+                                font-size: 12px;
+                            }
+                            @include respond-to(mobile) {
+                                font-size: 11px;
+                                -webkit-line-clamp: 3;
+                            }
                         }
                     }
                     .bi {
@@ -422,6 +743,14 @@ p.visible {
                         width: 32px;
                         height: 32px;
                         cursor: pointer;
+                        @include respond-to(tablet) {
+                            height: 28px;
+                            width: 28px;
+                        }
+                        @include respond-to(mobile) {
+                            height: 24px;
+                            width: 24px;
+                        }
                     }
                     .bi:hover {
                         transform: rotate(45deg) scale(1.2);
@@ -440,7 +769,9 @@ p.visible {
 .contact-section {
     background-color: var(--bg-clr);
     padding: 80px 0;
-    .contact-content {
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }    .contact-content {
         .contact-header {
             p {
                 font-size: 52px;
@@ -448,6 +779,12 @@ p.visible {
                 text-align: center;
                 font-weight: 600;
                 margin-bottom: 80px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -459,6 +796,12 @@ p.visible {
                 font-size: 28px;
                 color: var(--font-clr);
                 font-weight: 600;
+                @include respond-to(tablet) {
+                    font-size: 21px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 18px;
+                }
             }
         }
         .contact-txt {
@@ -466,6 +809,12 @@ p.visible {
             p {
                 font-size: 18px;
                 color: var(--primary-clr);
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
         .contact-form {
@@ -484,6 +833,12 @@ p.visible {
                 border: none;
                 outline: none;
                 box-sizing: border-box;
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
             ::placeholder {
                 color: #9c9c9c;
@@ -515,12 +870,20 @@ p.visible {
 
 .web-service-section {
     margin: 80px 0;
-    .container {
+    @include respond-to(mobile){
+        padding-top: 80px;
+    }    .container {
         .about-more-header {
             p {
                 font-size: 52px;
                 color: var(--font-clr);
                 font-weight: 600;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -533,19 +896,37 @@ p.visible {
                 position: relative;
                 font-size: 18px;
                 color: var(--primary-clr);
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
         .web-service-content {
             display: flex;
             gap: 20px;
+
+            @include respond-to(mobile) {
+                flex-direction: column;
+            }
             .web-service-lt {
                 width: 70%;
+
+                @include respond-to(mobile) {
+                    width: 100%;
+                }
                 .web-img {
                     margin-bottom: 20px;
                     img {
                         object-fit: cover;
                         height: 400px;
                         border-radius: 5px;
+
+                        @include respond-to(mobile) {
+                            height: 280px;
+                        }
                     }
                 }
                 .web-title {
@@ -553,17 +934,33 @@ p.visible {
                     p {
                         font-size: 28px;
                         font-weight: 600;
+                        @include respond-to(tablet) {
+                            font-size: 21px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 18px;
+                        }
                     }
                 }
                 .web-txt {
                     p {
                         font-size: 18px;
                         color: #939090;
+                        @include respond-to(tablet) {
+                            font-size: 16px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 15px;
+                        }
                     }
                 }
             }
             .web-service-rt {
                 width: 30%;
+
+                @include respond-to(mobile) {
+                    width: 100%;
+                }
                 .web-rt {
                     box-shadow: 0px 0px 15px 0px rgba(243, 244, 246, 0.051);
                     padding: 40px 20px;
@@ -600,6 +997,12 @@ p.visible {
                             font-size: 18px;
                             color: #939090;
                             cursor: pointer;
+                            @include respond-to(tablet) {
+                                font-size: 16px;
+                            }
+                            @include respond-to(mobile) {
+                                font-size: 15px;
+                            }
                         }
                         p:hover {
                             color: var(--secondary-clr);
@@ -613,7 +1016,9 @@ p.visible {
 
 .artwork-section {
     padding-block: 80px;
-    .container {
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }    .container {
         .artwork-header {
             p {
                 font-size: 52px;
@@ -621,6 +1026,12 @@ p.visible {
                 font-weight: 600;
                 text-align: center;
                 padding-bottom: 80px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -631,6 +1042,10 @@ p.visible {
             grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
             align-self: auto;
+            @include respond-to(mobile) {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
             .art-img-txt {
                 .art-img {
                     padding-bottom: 10px;
@@ -640,6 +1055,15 @@ p.visible {
                         cursor: pointer;
                         transition: transform 0.25s;
                         width: 100%;
+                        @include respond-to(tablet) {
+                            height: 440px;
+                        }
+                        @include respond-to(mobile) {
+                            height: 360px;
+                        }
+                        @include respond-to(mini-mobile) {
+                            height: 250px;
+                        }
                     }
                     img:hover {
                         transform: scale(1.05);
@@ -651,6 +1075,12 @@ p.visible {
                         color: var(--primary-clr);
                         font-size: 18px;
                         font-weight: 500;
+                        @include respond-to(tablet) {
+                            font-size: 16px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 14px;
+                        }
                     }
                 }
             }
@@ -709,7 +1139,6 @@ p.visible {
         cursor: pointer;
         background: none;
         border: none;
-        
     }
     .prev {
         left: -100px;
@@ -746,6 +1175,12 @@ p.visible {
             text-align: center;
             font-weight: 600;
             margin-bottom: 40px;
+            @include respond-to(tablet) {
+                font-size: 36px;
+            }
+            @include respond-to(mobile) {
+                font-size: 28px;
+            }
             .highlight {
                 color: var(--secondary-clr);
             }
@@ -759,6 +1194,15 @@ p.visible {
             img {
                 height: 320px;
                 object-fit: cover;
+                @include respond-to(tablet) {
+                    height: 280px;
+                }
+                @include respond-to(mobile) {
+                    height: 200px;
+                }
+                @include respond-to(mini-mobile) {
+                    height: 120px;
+                }
             }
             .fa-play {
                 position: absolute;
@@ -768,6 +1212,12 @@ p.visible {
                 left: 50%;
                 transform: translate(-50%, -50%);
                 cursor: pointer;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
             }
             .fa-play:hover {
                 font-size: 56px;
@@ -787,8 +1237,13 @@ p.visible {
         justify-content: space-between;
         gap: 20px;
         align-items: center;
-
+        @include respond-to(mobile) {
+            flex-direction: column-reverse;
+        }
         a {
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .contact-btn {
                 height: 44px;
                 width: 140px;
@@ -796,6 +1251,9 @@ p.visible {
                 background-color: var(--bg-secondary-clr);
                 border: 2px solid var(--secondary-clr);
                 cursor: pointer;
+                @include respond-to(mobile) {
+                    width: 100%;
+                }
                 p {
                     font-weight: 500;
                     color: var(--secondary-clr);
@@ -812,6 +1270,12 @@ p.visible {
             p {
                 color: var(--primary-clr);
                 font-weight: 500;
+                @include respond-to(tablet) {
+                    font-size: 15px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 14px;
+                }
             }
         }
         .footer-icons {
@@ -831,15 +1295,38 @@ p.visible {
 
 .form-section {
     padding: 80px 160px;
+    padding-top: 160px;
+    @include respond-to(tablet) {
+        padding: 70px 100px;
+    }
+    @include respond-to(mobile) {
+        padding: 50px 20px;
+    }
+    @include respond-to(mini-mobile) {
+        padding: 50px 0px;
+    }
     .form-content {
         background-color: var(--bg-secondary-clr);
         padding: 50px;
+        @include respond-to(tablet) {
+            padding: 40px;
+        }
+        @include respond-to(mobile) {
+            padding: 30px;
+        }
+
         .form-header {
             p {
                 font-size: 52px;
                 color: var(--font-clr);
                 font-weight: 600;
                 margin-bottom: 80px;
+                @include respond-to(tablet) {
+                    font-size: 36px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
                 .highlight {
                     color: var(--secondary-clr);
                 }
@@ -850,6 +1337,12 @@ p.visible {
             p {
                 font-size: 18px;
                 color: var(--font-clr);
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
             }
         }
         .form-txt {
@@ -877,6 +1370,12 @@ p.visible {
                 outline: none;
                 box-sizing: border-box;
                 width: 100%;
+                @include respond-to(tablet) {
+                    font-size: 16px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 15px;
+                }
                 &:focus {
                     outline: 1px solid var(--secondary-clr);
                     border-color: var(--secondary-clr);
@@ -899,19 +1398,38 @@ p.visible {
                 p {
                     font-size: 21px;
                     color: var(--font-clr);
+                    @include respond-to(tablet) {
+                        font-size: 18px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 16px;
+                    }
                     .require {
                         font-size: 16px;
                         color: #939090;
+                        @include respond-to(tablet) {
+                            font-size: 15px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 14px;
+                        }
                     }
                 }
             }
             .require {
                 font-size: 16px;
                 color: #939090;
+                @include respond-to(tablet) {
+                    font-size: 15px;
+                }
+                @include respond-to(mobile) {
+                    font-size: 14px;
+                }
             }
 
             #date {
                 cursor: pointer;
+                width: 100%;
             }
 
             .arts-drop {

@@ -16,6 +16,7 @@
                 <i class="fa-brands fa-x-twitter"></i>
                 <i class="fa-brands fa-youtube"></i>
                 <i class="fa-brands fa-tiktok"></i>
+                <i class="fa-brands fa-github"></i>
             </div>
         </div>
     </div>

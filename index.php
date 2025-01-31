@@ -39,6 +39,7 @@
         </div>
     </div>
 </div>
+
 <div class="about-section" id="about">
     <div class="container">
         <div class="about-content">
@@ -69,6 +70,14 @@
         </div>
     </div>
 </div>
+
+<div class="video-container">
+
+    <video id="myVideo" autoplay muted playsinline loop>
+        <source src="assets/image/hero/main-video.mov" type="video/mp4">
+    </video>
+</div>
+
 <div class="service-section" id="service">
     <div class="container">
         <div class="service-content">
@@ -135,6 +144,7 @@
         </div>
     </div>
 </div>
+
 <div class="portfolio-section" id="project">
     <div class="container">
         <div class="portfolio-header">
@@ -277,6 +287,7 @@
         </div>
     </div>
 </div>
+
 <div class="video-section">
     <div class="video-header">
         <p>Follow <span class="highlight">sijanportrayal </span>on tiktok</p>
@@ -316,39 +327,42 @@
 
 <?php include 'common/footer.php'; ?>
 <script>
-//Text typing animation JS
-const texts = ["Pencil Artist", "Web Developer"];
-const typingContainer = document.getElementById("typing-container");
-let textIndex = 0; // Tracks the current text in the array
-let charIndex = 0; // Tracks the current character index
-let isDeleting = false; // Indicates typing or deleting mode
+document.addEventListener("DOMContentLoaded", () => {
 
-function typeAnimation() {
-    const currentText = texts[textIndex]; // Get the current text
-    if (isDeleting) {
-        // Reverse: Delete characters from right to left
-        charIndex--;
-        typingContainer.textContent = currentText.substring(0, charIndex);
-    } else {
-        // Forward: Add characters from left to right
-        charIndex++;
-        typingContainer.textContent = currentText.substring(0, charIndex);
-    }
+    //Text typing animation JS
+    const texts = ["Pencil Artist", "Web Developer"];
+    const typingContainer = document.getElementById("typing-container");
+    let textIndex = 0; // Tracks the current text in the array
+    let charIndex = 0; // Tracks the current character index
+    let isDeleting = false; // Indicates typing or deleting mode
 
-    // When the entire text is typed
-    if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true; // Start deleting
-        setTimeout(typeAnimation, 1000); // Pause before reversing
+    function typeAnimation() {
+        const currentText = texts[textIndex]; // Get the current text
+        if (isDeleting) {
+            // Reverse: Delete characters from right to left
+            charIndex--;
+            typingContainer.textContent = currentText.substring(0, charIndex);
+        } else {
+            // Forward: Add characters from left to right
+            charIndex++;
+            typingContainer.textContent = currentText.substring(0, charIndex);
+        }
+
+        // When the entire text is typed
+        if (!isDeleting && charIndex === currentText.length) {
+            isDeleting = true; // Start deleting
+            setTimeout(typeAnimation, 1000); // Pause before reversing
+        }
+        // When the text is completely deleted
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false; // Start typing the next text
+            textIndex = (textIndex + 1) % texts.length; // Move to the next text, loop back to the first text
+            setTimeout(typeAnimation, 500); // Pause before typing next text
+        } else {
+            // Control typing and deleting speeds
+            setTimeout(typeAnimation, isDeleting ? 150 : 100);
+        }
     }
-    // When the text is completely deleted
-    else if (isDeleting && charIndex === 0) {
-        isDeleting = false; // Start typing the next text
-        textIndex = (textIndex + 1) % texts.length; // Move to the next text, loop back to the first text
-        setTimeout(typeAnimation, 500); // Pause before typing next text
-    } else {
-        // Control typing and deleting speeds
-        setTimeout(typeAnimation, isDeleting ? 100 : 150);
-    }
-}
+    typeAnimation(); // Start the animation
+});
 </script>
-

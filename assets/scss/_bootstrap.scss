@@ -33,6 +33,12 @@ body button {
 .container {
     margin: 0 80px;
     padding: 0;
+    @include respond-to(tablet){
+        margin: 0 30px;
+    }
+    @include respond-to(mobile){
+        margin: 0 20px !important;
+    }
 }
 
 body img {
@@ -60,6 +66,12 @@ body p {
     margin-bottom: 0px;
     font-family: "Inter", sans-serif;
     color: var(--font-clr);
+    @include respond-to(tablet){
+        font-size: 15px;
+    }
+    @include respond-to(mobile){
+        font-size: 14px;
+    }
 }
 
 body h1 {

@@ -8,17 +8,31 @@ p.visible {
 .about-more-section {
     padding-bottom: 80px;
     padding-top: 80px;
-    .container{
+    @include respond-to(mobile){
+        padding-top: 160px;
+    }    .container{
         .fa-solid{
             font-size: 56px;
              color: var(--secondary-clr);
              padding-bottom: 20px;
+             @include respond-to(tablet) {
+                font-size: 36px;
+            }
+            @include respond-to(mobile) {
+                font-size: 28px;
+            }
          }
     .about-more-header{
         p{
             font-size: 52px;
             color: var(--font-clr);
             font-weight: 600;
+            @include respond-to(tablet) {
+                font-size: 36px;
+            }
+            @include respond-to(mobile) {
+                font-size: 28px;
+            }
             .highlight {
                 color: var(--secondary-clr);
             } 
@@ -32,6 +46,12 @@ p.visible {
             position: relative;
             font-size: 18px;
             color: var(--primary-clr);
+            @include respond-to(tablet) {
+                font-size: 16px;
+            }
+            @include respond-to(mobile) {
+                font-size: 15px;
+            }
         }
         // p::after{
         //     content: '';
@@ -47,9 +67,16 @@ p.visible {
         display: flex;
         gap: 20px;
         align-items: center;
+       
+        @include respond-to(mobile) {
+            gap: 10px;
+            flex-direction: column;
+        }
         .about-more-lt {
             width: 50%;
-            // padding-left: 80px;
+            @include respond-to(mobile){
+                width: 100%;
+            }
             img {
                 height: 100%;
                 width: 100%;
@@ -58,12 +85,21 @@ p.visible {
         }
         .about-more-rt {
             width: 50%;
-            // padding-right: 80px;
+           
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .about-more-title {
                 p {
                     font-size: 28px;
                     font-weight: 600;
                     color: var(--font-clr);
+                    @include respond-to(tablet) {
+                        font-size: 21px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 18px;
+                    }
                 }
             }
             .about-more-post {
@@ -73,12 +109,24 @@ p.visible {
                     font-size: 20px;
                     font-weight: 500;
                     color: var(--primary-clr);
+                    @include respond-to(tablet) {
+                        font-size: 18px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 16px;
+                    }
                 }
             }
             .about-more-txt {
                 p {
                     color: #939090;
                     font-size: 18px;
+                    @include respond-to(tablet) {
+                        font-size: 16px;
+                    }
+                    @include respond-to(mobile) {
+                        font-size: 15px;
+                    }
                 }
             }
         }
